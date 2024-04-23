@@ -118,6 +118,10 @@ vue-cli-service build --target wc --name foo 'src/components/*.vue'
 
 When building multiple web components, `--name` will be used as the prefix and the custom element name will be inferred from the component filename. For example, with `--name foo` and a component named `HelloWorld.vue`, the resulting custom element will be registered as `<foo-hello-world>`.
 
+::: tip Note on Bundle that Registers Multiple Web Components
+When only 1 file is found using the glob pattern, only `--name` will be used as the custom element name. So in the example above, when `HelloWorld.vue` is the only `.vue` file in `src/components`, the resulting custom element will be registered as `<foo>`.
+:::
+
 ### Async Web Component
 
 When targeting multiple web components, the bundle may become quite large, and the user may only use a few of the components your bundle registers. The async web component mode produces a code-split bundle with a small entry file that provides the shared runtime between all the components, and registers all the custom elements upfront. The actual implementation of a component is then fetched on-demand only when an instance of the corresponding custom element is used on the page:
